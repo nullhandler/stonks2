@@ -4,6 +4,9 @@ from datetime import datetime
 
 
 def get_data_url(i_token, from_date, to_date, timeframe='15minute'):
+    """
+    timeframe: minute, 10minute, 15minute
+    """
     return f'https://kite.zerodha.com/oms/instruments/historical/{i_token}/{timeframe}?user_id=IJ0147&oi=1&from={from_date}&to={to_date}'
 
 
@@ -19,11 +22,10 @@ def get_next_date_difference(tickers, today_date):
     return 0
 
 
-
-def get_token(names, token):
+def get_token(names, token, exchange="NFO"):
     params = ""
     for name in names:
-        params += f'i=NFO:{name}&'
+        params += f'i={exchange}:{name}&'
     url = 'https://api.kite.trade/quote/ltp?'
     response = requests.get(
         url,
@@ -34,3 +36,12 @@ def get_token(names, token):
         },
     )
     return [i_token['instrument_token'] for i_token in response.json()['data'].values()]
+
+
+def get_nearest(n, m):
+    n1 = n % m
+    n2 = m - n1
+    if n1 > n2:
+        return n + m - n1
+    else:
+        return n - n1
