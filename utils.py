@@ -1,6 +1,7 @@
 import requests
 import json
 from datetime import datetime
+from mytoken import CTOKEN
 
 
 def get_data_url(i_token, from_date, to_date, timeframe='15minute'):
@@ -22,7 +23,7 @@ def get_next_date_difference(tickers, today_date):
     return 0
 
 
-def get_token(names, token, exchange="NFO"):
+def get_token(names, exchange="NSE"):
     params = ""
     for name in names:
         params += f'i={exchange}:{name}&'
@@ -32,9 +33,10 @@ def get_token(names, token, exchange="NFO"):
         params=params,
         headers={
             "X-Kite-Version": "3",
-            "Authorization": f"enctoken {token}"
+            "Authorization": f"enctoken {CTOKEN}"
         },
     )
+    print(response.json())
     return [i_token['instrument_token'] for i_token in response.json()['data'].values()]
 
 

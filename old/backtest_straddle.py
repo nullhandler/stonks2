@@ -2,7 +2,7 @@ import json
 from datetime import datetime, timedelta
 import utils
 from getData import get_data_if
-from backtest import back_test
+from old.backtest import back_test
 
 
 def backtest_straddle(main_file, b):
@@ -21,4 +21,4 @@ def backtest_straddle(main_file, b):
             buy_time = buy_time + timedelta(days=utils.get_next_date_difference(main[i_index:], buy_time))
 
 
-backtest_straddle("data/nifty.json", datetime.strptime("2020-12-01T12:00:00", "%Y-%m-%dT%H:%M:%S"))
+backtest_straddle("../data/nifty.json", datetime.strptime("2020-12-01T12:00:00", "%Y-%m-%dT%H:%M:%S"))
