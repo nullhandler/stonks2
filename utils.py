@@ -4,9 +4,9 @@ from datetime import datetime
 from mytoken import CTOKEN
 
 
-def get_data_url(i_token, from_date, to_date, timeframe='15minute'):
+def get_data_url(i_token, from_date, to_date, timeframe='day'):
     """
-    timeframe: minute, 10minute, 15minute
+    timeframe: minute, 10minute, 15minute, day
     """
     return f'https://kite.zerodha.com/oms/instruments/historical/{i_token}/{timeframe}?user_id=IJ0147&oi=1&from={from_date}&to={to_date}'
 

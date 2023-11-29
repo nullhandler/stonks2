@@ -5,7 +5,7 @@ import glob
 
 
 def get_data(inst):
-    url = utils.get_data_url(inst, '2020-11-30', '2020-12-30')
+    url = utils.get_data_url(inst, '2020-11-30', '2023-06-30')
     response = requests.get(
         url,
         headers={
@@ -27,4 +27,6 @@ def get_data_if(i_name):
 # nifty = utils.get_token(["NIFTY+50"], CTOKEN, "NSE")
 #
 # utils.save_data('data/nifty.json', get_data(nifty[0]))
+
+
 
